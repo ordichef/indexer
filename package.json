@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "start": "ts-node src/index.ts",
-    "cron": "ts-node src/cron.ts"
+    "cron": "ts-node src/crons/cron.ts",
+    "migrate": "ts-node src/scripts/migrate.ts"
+    
   },
   "dependencies": {
     "axios": "^1.4.0",

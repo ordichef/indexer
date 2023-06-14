@@ -29,7 +29,7 @@ const Inscription = dbInstance.define("Inscription", {
     type: DataTypes.STRING,
   },
   genesis_timestamp: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
   },
   tx_id: {
     type: DataTypes.STRING,
@@ -65,7 +65,7 @@ const Inscription = dbInstance.define("Inscription", {
     type: DataTypes.INTEGER,
   },
   timestamp: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
   },
   content: {
     type: DataTypes.STRING
