@@ -9,6 +9,7 @@ const Inscription = dbInstance.define("Inscription", {
   },
   number: {
     type: DataTypes.INTEGER,
+    unique: true
   },
   address: {
     type: DataTypes.STRING,

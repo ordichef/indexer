@@ -4,37 +4,37 @@ import { dbInstance } from "../core/database";
 import { Inscription } from "../models/inscription.model";
 import { CronRunner } from "../core/cron/cronRunner";
 import { CronJob } from "cron";
+import { Transaction } from "sequelize";
 const BATCH_SYNC=20;
 const CRON_NAME="SYNC_INSCRIPTION";
 
 const syncInscription = async () => {
+  let transaction: Transaction | undefined;
   try {
     console.log(" --------------syncInscription------------  ")
     let maxNumber: number =  await Inscription.max("number");
     if(!maxNumber){
       maxNumber = 0;
-    }else{
-      maxNumber++;
     }
     console.log(maxNumber);
 
-    const resp = await axios.get(`https://api.hiro.so/ordinals/v1/inscriptions?from_number=${maxNumber}&to_number=${maxNumber+BATCH_SYNC-1}`)
+    const resp = await axios.get(`https://api.hiro.so/ordinals/v1/inscriptions?from_number=${maxNumber+1}&to_number=${maxNumber+BATCH_SYNC}`)
     const results = resp.data.results;
   
-    const transaction = await dbInstance.transaction();
-    for (const item of results) {
-      await Inscription.create(item, {
+    transaction = await dbInstance.transaction();
+    console.log("size - "+results.length);
+    if(results.length > 0){
+      await Inscription.bulkCreate(results, {
         transaction
       })
-    }
-    if(results.length > 0){
       await transaction.commit();
       await syncInscription();
-
     }
+
 
   } catch (error) {
     console.error(error);
+    if(transaction) transaction.rollback();
     throw error;
   }
 }
