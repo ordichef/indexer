@@ -1,0 +1,7 @@
+**/build/*
+node_modules
+.env*
+build
+artifacts
+typechain
+*.ptau
