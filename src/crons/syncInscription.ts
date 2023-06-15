@@ -27,7 +27,7 @@ const syncInscription = async () => {
     if(results.length > 0){
       await Inscription.bulkCreate(results, {
         transaction
-      })
+      });
       await transaction.commit();
       await syncInscription();
     }
