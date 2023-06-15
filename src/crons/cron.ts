@@ -1,4 +1,5 @@
-import { startSyncInscription } from './sync';
+import { startSyncInscription } from './syncInscription';
+import { startSyncInscriptionContent } from './syncInscriptionContent';
 
 
-startSyncInscription();
+startSyncInscriptionContent();

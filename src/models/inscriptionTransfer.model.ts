@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { dbInstance } from "../core/database"
 
 
-const Inscription = dbInstance.define("Inscription", {
+const InscriptionTransfer = dbInstance.define("InscriptionTransfer", {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -85,5 +85,5 @@ const Inscription = dbInstance.define("Inscription", {
 });
 
 export {
-  Inscription
+  InscriptionTransfer
 }

@@ -5,6 +5,7 @@ import { Inscription } from "../models/inscription.model";
 import { CronRunner } from "../core/cron/cronRunner";
 import { CronJob } from "cron";
 import { Transaction } from "sequelize";
+
 const BATCH_SYNC=20;
 const CRON_NAME="SYNC_INSCRIPTION";
 
