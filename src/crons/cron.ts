@@ -3,3 +3,4 @@ import { startSyncInscriptionContent } from './syncInscriptionContent';
 
 
 startSyncInscriptionContent();
+startSyncInscription();
