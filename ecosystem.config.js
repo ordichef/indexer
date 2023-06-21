@@ -45,7 +45,7 @@ module.exports = {
       path: '/data/www/brc-indexer',
       'post-setup': 'ls -la && pwd',
       'post-deploy':
-      'yarn && pm2 reload ecosystem.config.cjs --env production --update-env && pm2 save',
+      'yarn && pm2 reload ecosystem.config.js --env production --update-env && pm2 save',
       // postinstall: "$(yarn bin)/pm2 install typecsript"
     },
     develop: { 
@@ -57,7 +57,7 @@ module.exports = {
       path: '/data/www/hmnd',
       'post-setup': 'ls -la && pwd',
       'post-deploy':
-      'yarn && pm2 reload ecosystem.config.cjs --env develop  --update-env&& pm2 save',
+      'yarn && pm2 reload ecosystem.config.js --env develop  --update-env&& pm2 save',
     }
   },
 }
