@@ -12,6 +12,8 @@
     "start": "ts-node src/index.ts",
     "cron": "ts-node src/crons/cron.ts",
     "migrate": "ts-node src/scripts/migrate.ts",
+    "playground": "ts-node src/scripts/playground.ts",
+    
     "test": "jest"
   },
   "dependencies": {

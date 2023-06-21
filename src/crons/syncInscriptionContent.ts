@@ -6,19 +6,23 @@ import { CronRunner } from "../core/cron/cronRunner";
 import { CronJob } from "cron";
 import { Transaction, Op } from "sequelize";
 
-const CRON_NAME="SYNC_INSCRIPTION";
+const CRON_NAME="SYNC_INSCRIPTION_CONTENT";
 const MAX_CONTENT_LENGTH=520;
 const MIME_TYPE="text/plain";
 const LIMIT=100;
 
-const isJsonString = (str: string) => {
+
+function isJson(item) {
+  let value = typeof item !== "string" ? JSON.stringify(item) : item;    
   try {
-      JSON.parse(str);
+    value = JSON.parse(value);
   } catch (e) {
-      return false;
+    return false;
   }
-  return true;
+    
+  return typeof value === "object" && value !== null;
 }
+
 
 const syncInscriptionContent = async () => {
   let transaction: Transaction | undefined;
@@ -42,9 +46,11 @@ const syncInscriptionContent = async () => {
       const resp = await axios.get(`https://api.hiro.so/ordinals/v1/inscriptions/${inscription["id"]}/content`)
       // console.log(resp.data);
 
-      if(isJsonString(resp.data)){
+      if(isJson(resp.data)){
         inscription['is_json'] = true;
         const jsonObj = JSON.parse(resp.data);
+        console.log(jsonObj);
+
         if(jsonObj["p"]){
           inscription['brc_p'] = jsonObj["p"];
         }

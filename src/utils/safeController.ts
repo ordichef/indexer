@@ -1,8 +1,9 @@
 import {validationResult} from 'express-validator';
+import { Request, Response } from 'express';
 
 
-const safeController = (func) => {
-  const wrappedFunc = async (req, res, next) => {
+const safeController = (func: Function) => {
+  const wrappedFunc = async (req: Request, res: Response, next: Function) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -24,8 +25,8 @@ const safeController = (func) => {
 }
 
 
-const safeControllerRaw = (func) => {
-  const wrappedFunc = async (req, res, next) => {
+const safeControllerRaw = (func: Function) => {
+  const wrappedFunc = async (req: Request, res: Response, next: Function) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
