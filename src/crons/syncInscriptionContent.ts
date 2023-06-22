@@ -45,11 +45,12 @@ const syncInscriptionContent = async () => {
     for (const inscription of inscriptions) {
       const resp = await axios.get(`https://api.hiro.so/ordinals/v1/inscriptions/${inscription["id"]}/content`)
       // console.log(resp.data);
-
-      if(isJson(resp.data)){
+      let data = typeof resp.data !== "string" ? JSON.stringify(resp.data) : resp.data;    
+      if(isJson(data)){
         inscription['is_json'] = true;
-        const jsonObj = JSON.parse(resp.data);
-        console.log(jsonObj);
+        
+        const jsonObj = JSON.parse(data);
+        // console.log(jsonObj);
 
         if(jsonObj["p"]){
           inscription['brc_p'] = jsonObj["p"];
@@ -60,7 +61,7 @@ const syncInscriptionContent = async () => {
       }else{
         inscription['is_json'] = false;
       }
-      inscription['content'] = resp.data;
+      inscription['content'] = data;
       
       console.log(`UPDATING ${inscription['id']}`)
       await inscription.save();
