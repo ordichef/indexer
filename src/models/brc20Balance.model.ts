@@ -1,12 +1,30 @@
 import { DataTypes } from "sequelize";
 import { dbInstance } from "../core/database";
 
-export const Brc20Ticker = dbInstance.define("Brc20Transaction", {
-  address: {
-    type: DataTypes.STRING,
-    primaryKey: true,
+const Brc20Balance = dbInstance.define(
+  "Brc20Balance",
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    address: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    tick: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    balance: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+    },
   },
-  // Array: 
-}, {
-    indexes: []
-});
+  {
+    indexes: [],
+  }
+);
+
+export { Brc20Balance };
