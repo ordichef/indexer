@@ -36,7 +36,7 @@ const syncInscription = async () => {
   } catch (error) {
     console.error(error);
     if(transaction) transaction.rollback();
-    throw error;
+    // throw error;
   }
 }
 
