@@ -57,16 +57,16 @@ const syncTransaction = async () => {
             await createTransaction(inscription.dataValues);
             console.log(`Transition ${inscription["id"]} created`);
           } catch (error) {
-            console.error(
-              "🚀 ~ file: syncInscriptionTransfer.ts:63 ~ forawait ~ error:",
-              error
-            );
+            // console.error(
+            //   "🚀 ~ file: syncInscriptionTransfer.ts:63 ~ forawait ~ error:",
+            //   error
+            // );
           }
         }
       }
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     // throw error;
   }
 };
