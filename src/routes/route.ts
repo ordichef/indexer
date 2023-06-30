@@ -3,6 +3,7 @@ import Brc20Transaction from "./brc20Transaction.route";
 import InscriptionRouter from "./inscription.route";
 
 let minted = 0;
+let total = 111;
 
 const initRoute = (app: express.Express) => {
   app.get("/", async (req: Request, res: Response) => {
@@ -22,13 +23,16 @@ const initRoute = (app: express.Express) => {
   app.get("/minted", async (req: Request, res: Response) => {
     res.status(200).json({
       data: {
-        minted: minted
+        minted: minted,
+        total: total
       },
     });
   });
 
   app.post("/JDpHBCSxhRfD3yhOlL5u/minted", async (req: Request, res: Response) => {
     minted = req.body.minted
+    total = req.body.total
+    
     res.status(200).json({
       data: {
         message: "success"
