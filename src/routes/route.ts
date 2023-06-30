@@ -9,6 +9,14 @@ const initRoute = (app: express.Express) => {
     });
   });
 
+  app.post("/checkWL", async (req: Request, res: Response) => {
+    res.status(200).json({
+      data: {
+        message: "Not in whitelist"
+      },
+    });
+  });
+
   app.use("/inscription", InscriptionRouter);
   app.use("/transaction", Brc20Transaction);
 };

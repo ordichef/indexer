@@ -3,14 +3,14 @@ import { dbInstance } from "../core/database"
 
 
 export const Inscription = dbInstance.define("Inscription", {
-  id: {
-    type: DataTypes.STRING,
-    primaryKey: true,
-  },
   number: {
     type: DataTypes.INTEGER,
-    unique: true
+    primaryKey: true,
   },
+  id: {
+    type: DataTypes.STRING,
+  },
+
   address: {
     type: DataTypes.STRING,
   },
@@ -81,5 +81,8 @@ export const Inscription = dbInstance.define("Inscription", {
     type: DataTypes.STRING
   }
 }, {
-    indexes: []
+    indexes: [{
+      // unique: true,
+      fields: ['id']
+    }]
 });
