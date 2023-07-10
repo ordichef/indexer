@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import uploadMiddleware from "../middlewares/multer";
 import Brc20Transaction from "./brc20Transaction.route";
 import InscriptionRouter from "./inscription.route";
 
@@ -15,7 +16,7 @@ const initRoute = (app: express.Express) => {
   app.post("/checkWL", async (req: Request, res: Response) => {
     res.status(200).json({
       data: {
-        message: "Not in whitelist"
+        message: "Not in whitelist",
       },
     });
   });
@@ -24,22 +25,46 @@ const initRoute = (app: express.Express) => {
     res.status(200).json({
       data: {
         minted: minted,
-        total: total
+        total: total,
       },
     });
   });
 
-  app.post("/JDpHBCSxhRfD3yhOlL5u/minted", async (req: Request, res: Response) => {
-    minted = req.body.minted
-    total = req.body.total
-    
-    res.status(200).json({
-      data: {
-        message: "success"
-      },
-    });
-  });
+  app.post(
+    "/JDpHBCSxhRfD3yhOlL5u/minted",
+    async (req: Request, res: Response) => {
+      minted = req.body.minted;
+      total = req.body.total;
 
+      res.status(200).json({
+        data: {
+          message: "success",
+        },
+      });
+    }
+  );
+
+  app.post(
+    "/uploads",
+    uploadMiddleware.array("files"),
+    async (req: any, res) => {
+      try {
+        if (!req.files) {
+          res.send({
+            status: false,
+            message: "No file uploaded",
+          });
+        } else {
+          res.status(200).json({
+            message: "Uploaded files successfully",
+            data: req.files,
+          });
+        }
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
 
   app.use("/inscription", InscriptionRouter);
   app.use("/transaction", Brc20Transaction);
