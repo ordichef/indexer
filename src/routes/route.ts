@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import uploadMiddleware from "../middlewares/multer";
 import Brc20Transaction from "./brc20Transaction.route";
 import InscriptionRouter from "./inscription.route";
+import FileRouter from "./file.route";
 
 let minted = 0;
 let total = 111;
@@ -44,30 +45,9 @@ const initRoute = (app: express.Express) => {
     }
   );
 
-  app.post(
-    "/uploads",
-    uploadMiddleware.array("files"),
-    async (req: any, res) => {
-      try {
-        if (!req.files) {
-          res.send({
-            status: false,
-            message: "No file uploaded",
-          });
-        } else {
-          res.status(200).json({
-            message: "Uploaded files successfully",
-            data: req.files,
-          });
-        }
-      } catch (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-
   app.use("/inscription", InscriptionRouter);
   app.use("/transaction", Brc20Transaction);
+  app.use("/uploads", FileRouter);
 };
 
 export { initRoute };

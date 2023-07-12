@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ['https://onchainbean.com','http://localhost:*', 'http://localhost:5173', 'http://localhost:5174' ],
+  origin: ['https://onchainbean.com','http://localhost:*', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000'],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 app.use('/uploads', express.static('uploads'));
