@@ -13,6 +13,7 @@ app.use(cors({
   origin: ['https://onchainbean.com','http://localhost:*', 'http://localhost:5173', 'http://localhost:5174' ],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
+app.use('/uploads', express.static('uploads'));
 
 initRoute(app);
 
