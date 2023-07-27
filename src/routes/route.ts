@@ -3,6 +3,7 @@ import uploadMiddleware from "../middlewares/multer";
 import Brc20Transaction from "./brc20Transaction.route";
 import InscriptionRouter from "./inscription.route";
 import FileRouter from "./file.route";
+import whitelistRouter from "./whitelist.route";
 
 let minted = 0;
 let total = 111;
@@ -48,6 +49,7 @@ const initRoute = (app: express.Express) => {
   app.use("/inscription", InscriptionRouter);
   app.use("/transaction", Brc20Transaction);
   app.use("/uploads", FileRouter);
+  app.use("/whitelist", whitelistRouter);
 };
 
 export { initRoute };
