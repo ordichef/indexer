@@ -664,5 +664,12 @@
     "meta": {
       "name": "Onchain Bean #111"
     }
+  },
+  {
+    "id": "18388e2563074a79df94a5e17693b375e8ed83070028b454feecccb0d37b110fi0",
+    "meta": {
+      "name": "Onchain Bean #112"
+    }
   }
+  
 ]
