@@ -4,7 +4,7 @@ import fs from "fs";
 const checkWhitelist = async (req: Request, res: Response) => {
   const id = req.params.id;
   const whitelistOG = fs
-    .readFileSync("src/resources/whitelist_OG.txt", { encoding: "utf8" })
+    .readFileSync("src/resources/whitelist_og.txt", { encoding: "utf8" })
     .split("\n");
   const whitelistGolden = fs
     .readFileSync("src/resources/whitelist_golden.txt", { encoding: "utf8" })
