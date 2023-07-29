@@ -16,7 +16,7 @@ const checkWhitelist = async (req: Request, res: Response) => {
   switch (true) {
     case whitelistOG.includes(id): {
       return {
-        type: "OG List",
+        type: "OG Beanlist",
       };
     }
 
